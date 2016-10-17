@@ -1,6 +1,6 @@
 ﻿using Microsoft.DotNet.Cli.CommandLine;
+using Microsoft.Extensions.Logging;
 using TranslatorService;
-using System;
 using System.IO;
 using System.Xml.Linq;
 using static TranslatorService.LanguageServiceClient;
@@ -9,6 +9,8 @@ namespace LocalizationResourceGenerator
 {
     public class Program
     {
+        private static ILoggerFactory _loggerFactory = new LoggerFactory();
+        private static ILogger _logger;
         private static readonly string _appKey = "6CE9C85A41571C050C379F60DA173D286384E0F2";
         private static readonly string _defaultCulture = "en";
         private static readonly LanguageServiceClient client = new LanguageServiceClient(EndpointConfiguration.BasicHttpBinding_LanguageService);
@@ -26,6 +28,9 @@ namespace LocalizationResourceGenerator
             var culturesCommand = app.Argument("cultures", "List of cultures, that the 'dotnet-resgen' command will generate a resource file(s) for each one for them.", true);
             var defaultCultureOption = app.Option("--default <CULTURE>", "The default culture that the 'dotnet-resgen' command will use it to translate from", CommandOptionType.SingleValue);
 
+            _loggerFactory.AddConsole();
+            _logger = _loggerFactory.CreateLogger(nameof(Program));
+
             app.OnExecute(async () =>
             {
                 const string resourceExtension = ".resx";
@@ -35,7 +40,7 @@ namespace LocalizationResourceGenerator
 
                 if (culturesCommand.Values.Count == 0)
                 {
-                    Console.WriteLine("The argument named 'cultures' is required in order to generate the resource files.");
+                    _logger.LogError("The argument named 'cultures' is required in order to generate the resource files.");
                     return 1;
                 }
 
