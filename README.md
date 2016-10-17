@@ -19,11 +19,18 @@ Simply add the binaries folder - which is located in `LocalizationResourceGenera
     Options:
       -h|--help            Show help information
       --default <CULTURE>  The default culture that the 'dotnet-resgen' command will use it to translate from
+      -t|--type <TYPE>     The type of the resource file [resx|restext]
 
 Here is a few examples:
 
-| Command                        | Description                                              |
-| -------------------------------| -------------------------------------------------------- |
-| dotnet resgen fr               | Generates a `fr.resx` resource file from English language |
-| dotnet resgen fr es            | Generates a `fr.resx` and `es.resx` resource files from English language |
-| dotnet resgen fr --default es  | Generates a `fr.resx` resource file from Spanish language |
+| Command                            | Description                                              |
+| -----------------------------------| -------------------------------------------------------- |
+| dotnet resgen fr                   | Generates a `fr.resx` resource file from `<resource>.resx` file with `en` as default culture |
+| dotnet resgen fr es                | Generates a `fr.resx` and `es.resx` resource files from `<resource>.resx` file with `en` as default culture |
+| dotnet resgen fr --default es      | Generates a `fr.resx` resource file from `<resource>.resx` file with Spanish as default culture |
+| dotnet resgen fr -t restext        | Generates a `fr.resx` resource file from `<resource>.restext` file with Spanish as default culture |
+
+There are few steps you should consider before using the `dotnet resgen` command:
+- Create your default resource file **without append the culture name** in your resource directory
+- Go to the resource directory using command line
+- Run `dotnet resgen` command
