@@ -15,5 +15,8 @@
     "netcoreapp1.0": {
       "imports": "dnxcore50"
     }
+  },
+  "tools": {
+    "dotnet-resgen": "1.0.0"
   }
 }
