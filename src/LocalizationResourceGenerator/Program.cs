@@ -35,6 +35,7 @@ namespace LocalizationResourceGenerator
 
             app.OnExecute(async () =>
             {
+                const string resourceExtension = "resx";
                 var defaultCulture = defaultCultureOption.Value() ?? _defaultCulture;
                 var cultures = culturesCommand.Values;
                 var resourceType = resourceTypeOption.Value() ?? _defaultType;
@@ -49,11 +50,10 @@ namespace LocalizationResourceGenerator
                 {
                     case "resx":
                     case "restext":
-                        var resourceExtension = resourceType;
                         var currentDirectory = Directory.GetCurrentDirectory();
                         XDocument doc = null;
 
-                        foreach (var filePath in Directory.GetFiles(currentDirectory, "*." + resourceExtension))
+                        foreach (var filePath in Directory.GetFiles(currentDirectory, "*." + resourceType))
                         {
                             var file = new FileInfo(filePath);
 
@@ -64,10 +64,10 @@ namespace LocalizationResourceGenerator
                                     var resourceFileName = string.Join(".", Path.GetFileNameWithoutExtension(file.Name), culture, resourceExtension);
                                     var resourcePath = Path.Combine(currentDirectory, resourceFileName);
 
-                                    if (resourceExtension == "resx")
+                                    if (resourceType == "resx")
                                     {
-                                        doc = XDocument.Load(resourcePath);
                                         File.Copy(file.FullName, resourcePath, true);
+                                        doc = XDocument.Load(resourcePath);
                                     }
                                     else
                                     {
@@ -82,7 +82,7 @@ namespace LocalizationResourceGenerator
                                         element.SetElementValue("value", result);
                                     }
 
-                                    using (var stream = new FileStream(resourcePath, FileMode.Open, FileAccess.Write))
+                                    using (var stream = new FileStream(resourcePath, FileMode.OpenOrCreate, FileAccess.Write))
                                     {
                                         doc.Save(stream);
                                     }
