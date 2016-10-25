@@ -17,6 +17,6 @@
     }
   },
   "tools": {
-    "dotnet-resgen": "1.0.0"
+    "LocalizationResourceGenerator": "1.0.0"
   }
 }
