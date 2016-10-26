@@ -42,7 +42,7 @@ namespace LocalizationResourceGenerator
                 const string resourceExtension = "resx";
                 var defaultCulture = defaultCultureOption.Value() ?? _defaultCulture;
                 var cultures = culturesCommand.Values;
-                var resourceType = resourceTypeOption.Value() ?? _defaultType;
+                var resourceType = (ResourceFileType)Enum.Parse(typeof(ResourceFileType), resourceTypeOption.Value() ?? _defaultType, true);
 
                 if (culturesCommand.Values.Count == 0)
                 {
@@ -52,8 +52,8 @@ namespace LocalizationResourceGenerator
 
                 switch (resourceType)
                 {
-                    case "resx":
-                    case "restext":
+                    case ResourceFileType.Resx:
+                    case ResourceFileType.Restext:
                         var currentDirectory = Directory.GetCurrentDirectory();
                         XDocument doc = null;
 
@@ -68,7 +68,7 @@ namespace LocalizationResourceGenerator
                                     var resourceFileName = string.Join(".", Path.GetFileNameWithoutExtension(file.Name), culture, resourceExtension);
                                     var resourcePath = Path.Combine(currentDirectory, resourceFileName);
 
-                                    if (resourceType == "resx")
+                                    if (resourceType == ResourceFileType.Resx)
                                     {
                                         File.Copy(file.FullName, resourcePath, true);
                                         doc = XDocument.Load(resourcePath);
