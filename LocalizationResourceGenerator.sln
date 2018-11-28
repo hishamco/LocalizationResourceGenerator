@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "LocalizationResourceGenerator", "src\LocalizationResourceGenerator\LocalizationResourceGenerator.xproj", "{7231AFFB-9B4F-4CD8-A995-8921B46062F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalizationResourceGenerator", "src\LocalizationResourceGenerator\LocalizationResourceGenerator.csproj", "{7231AFFB-9B4F-4CD8-A995-8921B46062F3}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "LocalizationResourceGeneratorSample", "samples\LocalizationResourceGeneratorSample\LocalizationResourceGeneratorSample.xproj", "{FE257DDC-2603-4FA3-A9C2-3326D23B35C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalizationResourceGeneratorSample", "samples\LocalizationResourceGeneratorSample\LocalizationResourceGeneratorSample.csproj", "{FE257DDC-2603-4FA3-A9C2-3326D23B35C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +24,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3F1003D3-7C88-4B39-B570-2EA59058943F}
 	EndGlobalSection
 EndGlobal
