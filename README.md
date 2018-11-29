@@ -1,24 +1,25 @@
 # LocalizationResourceGenerator
 Localization Resource Generator &amp; Translator CommandLine Tool for ASP.NET Core Application
 
-### dotnet-resgen
+### dotnet resgen
 
-`dotnet-resgen` is a localization resource (resx) generator for the .NET Core applications. Also it translates the resource entries using Microsoft Translation APIs during the generation process.
+`dotnet resgen` is a localization resource (resx) generator for the .NET Core applications. Also it translates the resource entries using Microsoft Translation APIs during the generation process.
 
 ### How To Install
 
-Simply add the binaries folder - which is located in `LocalizationResourceGenerator\src\LocalizationResourceGenerator\bin\Debug\netcoreapp1.0\win10-x64` - to the System PATH.
+1. Run the following command: `dotnet publish -c Debug -r {runtime identifier}`
+2. Add the binaries folder path - which is located in `LocalizationResourceGenerator\src\LocalizationResourceGenerator\bin\Debug\{netcoreapp version}\{runtime identifier}` - to the System PATH.
 
 ### How To Use
 
     dotnet resgen [arguments] [options]
 
     Arguments:
-      cultures   List of cultures, that the 'dotnet-resgen' command will generate a resource file(s) for each one for them
+      cultures   List of cultures, that the command will generate a resource file(s) for each one for them
 
     Options:
       -h|--help            Show help information
-      --default <CULTURE>  The default culture that the 'dotnet-resgen' command will use it to translate from
+      --default <CULTURE>  The default culture that the command will use it to translate from
       -t|--type <TYPE>     The type of the resource file [resx|restext]
 
 Here is a few examples:
