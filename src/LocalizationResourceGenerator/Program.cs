@@ -43,7 +43,7 @@ namespace LocalizationResourceGenerator
                     var currentDirectory = Directory.GetCurrentDirectory();
                     XDocument doc = null;
 
-                    foreach (var filePath in Directory.GetFiles(currentDirectory, "*." + resourceType))
+                    foreach (var filePath in Directory.GetFiles(currentDirectory, "*." + resourceType.ToString().ToLower()))
                     {
                         var file = new FileInfo(filePath);
 
