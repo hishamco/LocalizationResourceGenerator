@@ -18,7 +18,7 @@ namespace LocalizationResourceGenerator
         private static readonly LanguageServiceClient client = new LanguageServiceClient(EndpointConfiguration.BasicHttpBinding_LanguageService);
 
         public static int Main(string[] args)
-            => CommandLineApplication.Execute<Program>("fr");
+            => CommandLineApplication.Execute<Program>(args);
 
         [Argument(0, Name = "cultures", Description = "List of cultures, that command will generate a resource file(s) for each one for them")]
         [Required]
